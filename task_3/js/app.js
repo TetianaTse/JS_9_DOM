@@ -1,3 +1,4 @@
+'use strict';
 document.getElementById("btn").addEventListener("click", changeImages); 
 
 function changeImages() {

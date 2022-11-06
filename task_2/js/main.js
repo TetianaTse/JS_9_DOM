@@ -1,3 +1,5 @@
+'use strict';
+let arrAnyWeb;
 function enterCite() {
     let anyWeb = prompt('Enter the address of the site you want to go to:');
     arrAnyWeb = Array.from(anyWeb);
