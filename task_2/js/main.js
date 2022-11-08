@@ -1,36 +1,34 @@
 'use strict';
-let arrAnyWeb;
+let anyWeb;
 function enterCite() {
-    let anyWeb = prompt('Enter the address of the site you want to go to:');
-    arrAnyWeb = Array.from(anyWeb);
-    return arrAnyWeb;
+    do {
+        anyWeb = prompt('Enter the address of the site you want to go to:');
+    } while (anyWeb === '' || anyWeb === null);
+    return anyWeb;
 };
 
 function checkHttp() {
-    let arrCheck = [];
-    const arrHttp = ['h','t','t','p',':','/','/'];
-    const arrHttps = ['h','t','t','p','s',':','/','/'];
-    for(let i = 0; i < 7; i++) {
-        arrCheck.push(arrAnyWeb[i]);
+    if (anyWeb.indexOf('http://',0) !== -1 || anyWeb.indexOf('https://',0) !== -1) {
+        return anyWeb;
     }
-
-    for(let i = 0; i < arrCheck.length; i++) {
-        if(arrCheck[i] === arrHttps[i] || arrCheck[i] === arrHttp[i]) {
-            continue;
-        } else {
-            arrAnyWeb.unshift('h','t','t','p','s',':','/','/');
-            break;
-        }
-    }
-    return arrAnyWeb = arrAnyWeb.join("");
+    anyWeb = 'https://' + anyWeb;
+    return anyWeb;
 }
 
 function enterAndCheck() {
-    let arrAnyWeb = enterCite();
+    enterCite();
     checkHttp();
-    const textLink =document.createElement('div');
+    const textLink=document.createElement('div');
     textLink.classList.add('link');
-    textLink.textContent = arrAnyWeb.join("");
+    textLink.textContent = anyWeb;
     const parent = document.getElementById('btn-block');
     parent.appendChild(textLink);
+}
+
+function message() {
+    const message=document.createElement('div');
+    message.classList.add('message');
+    message.innerHTML='First enter the website address!';
+    const parent = document.getElementById('btn-block');
+    parent.appendChild(message);
 }
